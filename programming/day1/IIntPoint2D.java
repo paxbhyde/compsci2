@@ -2,22 +2,25 @@
  * An interface describing a representation of integer points on a 2D plane.
  */ 
 public interface IIntPoint2D {
-    /**
-     * @returns the X coordinate
-     */
-    public int getX();
-    /**
-     * @returns the Y coordinate
-     */
-    public int getY();
-    
-    /**
-     * Computes the manhattan distance to another point. 
-     * formula: abs(x1-x2) + abs(y1-y2)
-     * @param o the other point
-     * @returns the manhattan distance
-     */
-    public int manhattanDistance(IIntPoint2D o);
+
+   	/**
+	 * @returns the X coordinate
+	 */
+	public int getX();
+	
+	/**
+	 * @returns the Y coordinate
+	 */
+	public int getY();
+
+	/**
+	 * Computes the manhattan distance to another point. 
+	 * formula: abs(x1-x2) + abs(y1-y2)
+	 * @param o the other point
+	 * @returns the manhattan distance
+	 */
+	public int manhattanDistance(IIntPoint2D o);
+
     /**
      * Computes the euclidean distance to another point. 
      * formula: sqrt((x1-x2)^2 + (y1-y2)^2)

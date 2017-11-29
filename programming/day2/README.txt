@@ -2,5 +2,7 @@ This directory contains the java source files for a data structure representing 
 
 Files:
 IIntPoint2D.java - An interface for a 2D point with integer coordinates
-IGrid2D.java     - An interface for a 2D grid
+IntPoint2D.java –
+IIntGrid2D.java     - An interface for a 2D grid
+IntGrid2D.java –
 Test.java        - A program to test a 2D grid implementation

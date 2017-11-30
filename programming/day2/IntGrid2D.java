@@ -20,11 +20,12 @@ public class IntGrid2D implements IIntGrid2D {
 
 		grid = new char[i][j];	
 		
-		for (int x = 0; x < i; x++){
-			for (int y  = 0; y < j; y++){	
-				grid[x][y] = q;		
+		for (int x = 0; x < i; x++){ // for every addition to i (width), it writes j memory spaces
+			for (int y  = 0; y < j; y++){ // for every addition to j (height), it writes 1 new space
+				grid[x][y] = q;
     		}
 		}
+		//adding to both at once is an addition of (i + j + 1), which depends on i & j
 	}
     /**
      * Sets the value at a point on the grid, replacing the previous value if any.

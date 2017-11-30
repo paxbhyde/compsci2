@@ -32,12 +32,12 @@ public class Test {
         
         // print out the actual board
         System.out.println("Board looks like:");
-        for(int y = 1; y >- 2; y--) {
+        for(int y = 1; y > -2; y--) {
             IIntPoint2D c1 = new IntPoint2D(-1,y);
             IIntPoint2D c2 = new IntPoint2D(0,y);
             IIntPoint2D c3 = new IntPoint2D(1,y);
             System.out.println(ttt.getPoint(c1)+"|"+ttt.getPoint(c2)+"|"+ttt.getPoint(c3));
-            if(y >- 1) {
+            if(y > -1) {
                 System.out.println("-+-+-");
             }
         }

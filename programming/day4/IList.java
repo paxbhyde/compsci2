@@ -2,7 +2,7 @@
  * List interface based on the 11/29 discussion of what a program using lists might
  * need to do. This will be our definition for the list ADT this block.
  */
-public interface IList<T> {
+public interface IList<T> { // <T> is a generic (non-specific) variable type.
     /**
      * Inserts an item at a specific index in the list
      * @param idx where the item should be inserted

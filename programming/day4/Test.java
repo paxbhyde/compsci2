@@ -7,7 +7,7 @@ public class Test {
      * Note: This test method has only been tested for n>=10... Small values of 
      *       n might fail due to bugs in runTest rather than bugs in the List
      */
-    public static void runTest(IList list, int n) throws TestFailedException {
+    public static void runTest(IList<Integer> list, int n) throws TestFailedException {
         boolean test_failed = false;
         int s; // temp value to support some tests
         
@@ -50,7 +50,7 @@ public class Test {
         // Use the prev call to check the elements are there in order
         list.jumpToHead();
         list.jumpToTail();
-        for(int i=n-1; i>-1; i--) {
+        for(int i = n-1; i > -1; i--) {
             if(list.fetch() != i) { test_failed=true; }
             list.prev();
         }
@@ -75,7 +75,7 @@ public class Test {
         if(list.fetch(0) != 1) { test_failed=true; }
         for(int i=2; i<n-2; i++) {
             if(list.fetch(i) != i) { test_failed=true; }
-        }
+       	}
         // Check the size and order
         if(test_failed) {
             debugPrint(list);
@@ -139,13 +139,13 @@ public class Test {
      */
     public static void main(String[] argv) throws TestFailedException {
         // Construct three new list instances
-        IList<Integer> arrayList  = new ArrayList<Integer>();
-        IList<Integer> singleList = new SingleLinkList<Integer>();
+       	IList<Integer> arrayList  = new ArrayList<Integer>();
+       	IList<Integer> singleList = new SingleLinkList<Integer>();
         IList<Integer> doubleList = new DoubleLinkList<Integer>();
         
         // Run the tests on each list implementation
-        runTest(arrayList, 105);
-        runTest(singleList, 105);
+       	runTest(arrayList, 105);
+    	runTest(singleList, 105);
         runTest(doubleList, 105);
     }
     

@@ -8,7 +8,7 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 	private SLink<T> head;
 	private SLink<T> tail;
 	private SLink<T> current;
-	
+
     /**
      * Inserts an item at a specific index in the list
      * @param idx where the item should be inserted
@@ -19,7 +19,7 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
     		System.out.println("Requested insertion out of range.");
     		return; // is it safe to do this?
     	}
-    	
+
     	SLink<T> ins = new SLink<T>(v, null);
     	if (leng == 0) { //if the list is empty
     		head = ins;
@@ -32,7 +32,7 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
     		this.append(v);
     	} else {
     		SLink<T> point = head;
-    		for (int i = 0; i < idx - 1; i++){ 
+    		for (int i = 0; i < idx - 1; i++){
     			point = (SLink<T>) point.getNext();
     		}	// for loop moves point down the chain to the idxTH index
     		ins.setNext(point.getNext());
@@ -40,15 +40,15 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
     	}
     	leng++;
     }
-    
+
 	/**
-	 * Adds an item to the end of list. Called 'Add' in class, but more usually called 
+	 * Adds an item to the end of list. Called 'Add' in class, but more usually called
 	 * append in other libraries. Moves <i>current</i> to the end of the list.
 	 * @param v Item to add
 	 */
 	public void append(T v){
 		SLink<T> app = new SLink<T>(v, null);
-		if (leng == 0) { 
+		if (leng == 0) {
 			head = app;
 			tail = app;
 			current = app;
@@ -60,9 +60,9 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 		leng++;
 		currentidx = leng - 1;
 	}
-	
+
 	/**
-	 * Removes the item at the <i>current</i> index in the list. <i>Current</i> becomes 
+	 * Removes the item at the <i>current</i> index in the list. <i>Current</i> becomes
 	 * the previous item in the list, if such element exists.
 	 */
 	public void remove(){
@@ -83,9 +83,9 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 			currentidx--;
 			current.setNext(rem);
 		}
-		leng--;		
+		leng--;
 	}
-	
+
 	/**
 	 * Removes the item at a specific index
 	 * @param idx index of item to remove
@@ -102,20 +102,15 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 		if (idx == 0) {
 			if (current == head) { current = (SLink<T>) head.getNext(); }
 			head = (SLink<T>) head.getNext();
-			/* -- any way to set the previous head's Next value to null?
-			SLink<T> secondLink = head.getNext();
-			head.setNext(null);
-			head = secondLink;
-			*/
 		} else {
 			SLink<T> remidx = head;
-			
+
 			for (int i = 0; i < idx - 1; i++) {
 				remidx = (SLink<T>) remidx.getNext(); //remidx points to the SLink before the remove target
 			}
-			
-			if (remidx.getNext() == tail) { //or idx == maxidx
-				if (current == tail) { 
+
+			if (remidx.getNext() == tail) { //if the remove target is the tail
+				if (current == tail) {
 					current = remidx;
 					currentidx--;
 				}
@@ -126,18 +121,18 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 				remidx.setNext(remNext.getNext());
 				if (currentidx >= idx) { currentidx--; }
 			}
-			
+
 		}
 		leng--;
 	}
-	
+
 	/**
 	 * Changes the location of an existing element in the list
 	 * @param sidx - The initial index for the element to move
 	 * @param didx - The final index for the element to move
 	 */
 	public void move(int sidx, int didx){
-		if (sidx == didx) { return; } 
+		if (sidx == didx) { return; }
 		if (sidx < 0 || didx < 0 || sidx > leng - 1 || didx > leng) {
 			System.out.println("Requested move out of bounds.");
 			return;
@@ -147,11 +142,14 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 			pointer = (SLink<T>) pointer.getNext();
 		}
 		T elem = pointer.getValue();
+		/* if (sidx < didx) {
+			didxNew = didx - 1;
+		} */
 		this.remove(sidx);
 		this.insert(didx, elem);
-		
+
 	}
-	
+
 	/**
 	 * Fetches the value at the <i>current</i> index in the list.
 	 * @return the requested item
@@ -160,7 +158,7 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 		T elm = current.getValue();
 		return elm;
 	}
-	
+
 	/**
 	 * Fetches the value at a specific index in the list.
 	 * @param idx index of the item to return
@@ -171,7 +169,7 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 		for (int i = 0; i < idx; i++) { fetchi = (SLink<T>) fetchi.getNext(); }
 		return fetchi.getValue();
 	}
-	
+
 	/**
 	 * Advances the <i>current</i> index to the next index, if possible.
 	 */
@@ -179,9 +177,9 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 		if (current != tail) {
 			current = (SLink<T>) current.getNext();
 			currentidx++;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Advances the <i>current</i> index to the previous index, if possible.
 	 */
@@ -197,7 +195,7 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 			current = prev;
 			if (currentidx > 0) { currentidx--; }
 		}
-	}	
+	}
 	/**
 	 * Advances the <i>current</i> to the tail element
 	 */
@@ -217,5 +215,5 @@ public class SingleLinkList<T> implements IList<T> { // <T> is a generic (non-sp
 	 */
 	public int size(){
 		return leng;
-	}	
+	}
 }

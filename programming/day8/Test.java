@@ -8,27 +8,38 @@ public class Test {
         System.out.println("Reading in the words");
         BufferedReader br=new BufferedReader(new FileReader("shortlist.txt"));
         // !!! Choose your favorite list implementation here !!!
-        IList<String> words=new DoubleLinkList<String>();
+        IList<String> words=new SingleLinkList<String>();
         String l=br.readLine();
         while(l!=null) {
             words.append(l);
             l=br.readLine();
         }
-        
+
         System.out.println("Doing the inserts");
         // Add them to the dictionaries in random order
         String[] allwords = new String[words.size()];
         IDict<String,Integer> linear = new Dict<String,Integer>();
         IDict<String,Integer> tree   = new BSTree<String,Integer>();
         Random rand = new Random();
-        for(int i=0; words.size()>0; i++) {
+        long linearIns = 0;
+        long treeIns = 0;
+        long a; long b; long c;
+        for(int i=0; words.size() > 0; i++) {
             int idx = rand.nextInt(words.size());
             allwords[i]=words.fetch(idx);
             words.remove(idx);
+            a = System.currentTimeMillis();
             linear.add(allwords[i],i);
+            b = System.currentTimeMillis();
             tree.add(allwords[i],i);
+            c = System.currentTimeMillis();
+            linearIns = linearIns + (b - a);
+            treeIns = treeIns + (c - b);
         }
-        
+        System.out.println("List inserts took "+ linearIns + "ms");
+        System.out.println("Tree inserts took "+ treeIns +"ms");
+
+
         System.out.println("Timing 100,000 fetches");
         long s;
         long e;
@@ -41,7 +52,7 @@ public class Test {
             }
         }
         e = System.currentTimeMillis();
-        System.out.println("Tree dict took "+(e-s)+"ms");
+        System.out.println("List dict took "+(e-s)+"ms");
         rand.setSeed(0);
         s = System.currentTimeMillis();
         for(int i=0; i<100000; i++) {

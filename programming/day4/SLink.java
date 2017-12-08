@@ -20,23 +20,23 @@ public class SLink<T> implements ISLink<T> {
      * @return the value
      */
     public T getValue(){ return element; }
-    
+
     /**
      * Sets the current value for this link cell
      * @param v the value to place in this cell
      */
     public void setValue(T v){ element = v; }
-    
+
     /**
      * Gets the next cell in the list
      * @return the cell
      */
     public ISLink<T> getNext(){ return pointer; }
-    
+
     /**
      * Sets the next cell in the list
      * @param c the next cell
      */
     public void setNext(ISLink<T> c){ pointer = c; }
-    
+
 }

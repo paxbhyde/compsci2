@@ -12,9 +12,14 @@ Pass n - scan indexes n through n for the minimum value, swan into index n-1
 
 
 MergeSort.java
-Merge sort uses recursion to achieve better time complexity than O(n^2). Merge sort can be done in place (without allocating new arrays) but that optimization is not required for this assignment. The sort operates in two major phases. In phase 1, recursion is used to repeatedly split the list in half, until there are n lists of length 1 (trivially sorted). In phase 2, the sorted lists are merged together in sorted order. 
+Merge sort uses recursion to achieve better time complexity than O(n^2). Merge sort can be done in place (without allocating new arrays) but that optimization is not required for this assignment. The sort operates in two major phases. In phase 1, recursion is used to repeatedly split the list in half, until there are n lists of length 1 (trivially sorted). In phase 2, the sorted lists are merged together in sorted order.
 
 
 Files:
 ISort.java - An interface for sorter implementations
+SelectSort.java – Selection sort type implementation of ISort interface.
+MergeSort.java – Merge type sort implementation of ISort without new array writes.
+ArrayMergeSort.java – Merge type sort implementation of ISort using new subarrays for each recursion.
 Test.java  - Performance test that times sorting arrays of random values
+
+Paxton Hyde - 12/10/2017 - honor code upheld

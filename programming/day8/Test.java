@@ -6,9 +6,9 @@ public class Test {
     public static void main(String[] args) throws Exception {
         // Read in some words
         System.out.println("Reading in the words");
-        BufferedReader br=new BufferedReader(new FileReader("shortlist.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("shortlist.txt"));
         // !!! Choose your favorite list implementation here !!!
-        IList<String> words=new SingleLinkList<String>();
+        IList<String> words = new SingleLinkList<String>();
         String l=br.readLine();
         while(l!=null) {
             words.append(l);

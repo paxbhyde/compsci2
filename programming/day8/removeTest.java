@@ -19,21 +19,9 @@ public class removeTest<K extends Comparable<K>> {
       // Add them to the dictionaries in random order
       String[] allwords = new String[100];
       IDict<String,Integer> linear = new Dict<String,Integer>();
-      IDict<String,Integer> tree   = new BSTree<String,Integer>();
+      BSTree<String,Integer> tree   = new BSTree<String,Integer>();
       Random rand = new Random();
-      tree.add("f", 1);
-      tree.add("a", 2);
-      tree.add("b", 2);
-      tree.add("c", 2);
-      tree.add("e", 2);
-      tree.add("h", 3);
-      tree.add("g", 3);
-      tree.add("k", 3);
-      tree.add("i", 3);
-      System.out.println(tree.remove("f"));
-      System.out.println(tree.remove("g"));
-      System.out.println(tree.remove("a"));
-      /*for(int i=0; i < 100; i++) {
+      for(int i=0; i < 100; i++) {
           int idx = rand.nextInt(words.size());
           //allwords contains words in random order
           allwords[i] = words.fetch(idx);
@@ -52,7 +40,6 @@ public class removeTest<K extends Comparable<K>> {
         } catch (NullPointerException n) {
           System.out.println(allwords[i] + " not found in tree.");
         }
-      }*/
-
+      }
   }
 }

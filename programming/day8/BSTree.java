@@ -3,7 +3,7 @@
  */
 public class BSTree<K extends Comparable<K>,V> implements IDict<K, V> {
     private Node<K, V> curr;
-    private Node<K, V> root;
+    Node<K, V> root;
     private int size;
     private SingleLinkList<Node> inorderSll; //used for the keys method
     /**
@@ -135,15 +135,7 @@ public class BSTree<K extends Comparable<K>,V> implements IDict<K, V> {
         return null;
       }
       //while we have not found the right key
-      K currKey = curr.getKey();
-      System.out.println(currKey);
-      while (k.compareTo(currKey) != 0){
-        //check if there was a failure with the fetch
-        //not getting this
-        if (curr == null) {
-          System.out.println("No matching key.");
-          return null;
-        }
+      while (k.compareTo(curr.getKey()) != 0){
         //place with one of the current children
         if (k.compareTo(curr.getKey()) < 0){
           parent = curr;
@@ -152,11 +144,17 @@ public class BSTree<K extends Comparable<K>,V> implements IDict<K, V> {
           parent = curr;
           curr = curr.getRight();
         }
+        //check if there was a failure with the fetch
+        //not getting this
+        if (curr == null) {
+          System.out.println("No matching key.");
+          return null;
+        }
       }
       //register the value to be removed
       //!!!from this point out curr marks the value to be removed
       V removed = (V) curr.getValue();
-      if (curr == root) {
+      if (curr.equals(root)) {
         //compare the children
         if (curr.isLeaf()) { size = 0; return root.getValue(); }
         //if one, new root is that child
@@ -167,6 +165,7 @@ public class BSTree<K extends Comparable<K>,V> implements IDict<K, V> {
         }
         //if two, new root should be reassigned by 2 children method
       }
+    //this is the only scenario that works
     //if isLeaf() == true, kill the node easy
     //this works flawlessly (because if removed from idx 100 to 0 it works)
       if (curr.isLeaf() == true){
@@ -179,41 +178,60 @@ public class BSTree<K extends Comparable<K>,V> implements IDict<K, V> {
     //this looks airtight
       if ( (curr.getLeft() == null && curr.getRight() != null) ||
               (curr.getLeft() != null && curr.getRight() == null) ){
-        //assign parent point to
-         if (curr.getLeft() == null){
-           parent.setRight(curr.getRight());
-         }
-         if (curr.getRight() == null){
-           parent.setLeft(curr.getLeft());
-         }
+        if (parent.getRight().equals(curr)) {
+          //if not root, assign parent pointer to correct child
+           if (curr.getLeft() == null){
+                parent.setRight(curr.getRight());
+           }
+           if (curr.getRight() == null){
+                parent.setRight(curr.getLeft());
+           }
+        }
+        else if (parent.getLeft().equals(curr)) {
+           if (curr.getLeft() == null){
+                parent.setLeft(curr.getRight());
+           }
+           if (curr.getRight() == null){
+               parent.setLeft(curr.getLeft());
+           }
+        }
+
          size--;
          return removed;
       }
     //if 2 children, from node to remove go right once then left until can't
     //remove that node and set as value originally wanted to remove
-    //need: a check to see if curr is the root
       Node<K, V> swapParent = curr;   //replace with parent
       Node<K, V> swap = curr.getRight();
     //move to leftmost node in right subtree of root
+    int counter = 0;
       while (swap.getLeft() != null){
         swapParent = swap;
         swap = swap.getLeft();
+        counter++;
       }
     //reached leftmost node
       if (swap.getRight() == null){
         curr.setValue((V) swap.getValue());
         curr.setKey((K) swap.getKey());
         swapParent.setLeft(null);
+        //if (currRoot) { };
         size--;
         return removed;
-      } else {
+      } else if (swap.getRight() != null){
         curr.setValue((V) swap.getValue());
         curr.setKey((K) swap.getKey());
-        swapParent.setLeft(swap.getRight());
+        if (counter == 0) {
+          swapParent.setRight(swap.getRight());
+        } else {
+          swapParent.setLeft(swap.getRight());
+        }
         size--;
         return removed;
       }
-
+      //impossible case
+      System.out.println("impossible");
+      return null;
     }
 
     /**

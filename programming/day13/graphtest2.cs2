@@ -1,0 +1,16 @@
+enode:anode:1.0
+enode:fnode:5.5
+bnode:anode:-0.2
+bnode:mnode:1.2
+bnode:cnode:100.0
+mnode:enode:10.0
+knode:fnode:2.1
+cnode:knode:32.3
+cnode:dnode:15.0
+bnode:unode:69.7
+unode:cnode:17.1
+cnode:snode:1.0
+cnode:inode:3.3
+inode:cnode:3.3
+cnode:tnode:18.8
+tnode:mnode:0.7
